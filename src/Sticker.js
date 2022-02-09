@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { Stage, Layer, Image } from "react-konva";
 import useImage from "use-image";
 import Konva from "konva";
-import { useDropzone } from "react-dropzone";
+// import { useDropzone } from "react-dropzone";
 
 const URLImage = ({ image }) => {
   const [img] = useImage(image.src);
