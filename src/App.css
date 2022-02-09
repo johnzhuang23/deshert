@@ -46,10 +46,19 @@ html, body {
 
 #grid-shirt {
   grid-area: shirt;
-  width: 100%;
+  /* width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
+  text-align: center;
+margin: 0 auto */
+    width: 640px; /* Can be in percentage also. */
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+
 }
 
 #shirt {
