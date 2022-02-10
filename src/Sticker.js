@@ -3,7 +3,9 @@ import { render } from "react-dom";
 import { Stage, Layer, Image } from "react-konva";
 import useImage from "use-image";
 import Konva from "konva";
-// import { useDropzone } from "react-dropzone";
+import { useDropzone } from "react-dropzone";
+import eleven from "./images/eleven.png";
+import "./Sticker.css";
 
 const URLImage = ({ image }) => {
   const [img] = useImage(image.src);
@@ -19,20 +21,58 @@ const URLImage = ({ image }) => {
   );
 };
 
+// let [stickyLabel, setStickyLabel] = useState([]);
+//   const stickerHandleClick = (e) => {
+//     console.log(e.target.childNodes);
+//     return () => {
+//       setStickyLabel(e.target.childNodes);
+//     };
+//   };
+
 export default function Sticker(props) {
   const dragUrl = React.useRef();
   const stageRef = React.useRef();
   const [images, setImages] = React.useState([]);
   return (
     <div>
-      <img
-        alt="lion"
-        src="https://konvajs.org/assets/lion.png"
-        draggable="true"
-        onDragStart={(e) => {
-          dragUrl.current = e.target.src;
-        }}
-      />
+      <div className="img">
+        <img
+          className="img1"
+          alt="lion"
+          src="https://konvajs.org/assets/lion.png"
+          draggable="true"
+          onDragStart={(e) => {
+            dragUrl.current = e.target.src;
+          }}
+        />
+        {/* <img
+          className="img2"
+          alt=""
+          src="https://slm-assets.secondlife.com/assets/25911713/lightbox/easter%20yoda.jpg?1584671285'"
+          draggable="true"
+          onDragStart={(e) => {
+            dragUrl.current = e.target.src;
+          }}
+        />
+        <img
+          className="img2"
+          alt=""
+          src="https://webtrickz.com/wp-content/uploads/2020/03/memoji-sticker-transparent-background.png"
+          draggable="true"
+          onDragStart={(e) => {
+            dragUrl.current = e.target.src;
+          }}
+        /> */}
+        <img
+          className="img2"
+          alt=""
+          src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/004eebdd-fbb2-40d1-a89d-0612b04c2a8c/dk95rq-97c36be3-beaf-4b7a-a91b-3d107f7345c6.png"
+          draggable="true"
+          onDragStart={(e) => {
+            dragUrl.current = e.target.src;
+          }}
+        />
+      </div>
       <div
         onDrop={(e) => {
           e.preventDefault();
@@ -50,9 +90,18 @@ export default function Sticker(props) {
         }}
         onDragOver={(e) => e.preventDefault()}
       >
-        {images.map((image) => {
-          return <URLImage image={image} />;
-        })}
+        <Stage
+          width={window.innerWidth}
+          height={window.innerHeight}
+          style={{ border: "1px solid grey" }}
+          ref={stageRef}
+        >
+          <Layer>
+            {images.map((image) => {
+              return <URLImage image={image} />;
+            })}
+          </Layer>
+        </Stage>
       </div>
     </div>
   );

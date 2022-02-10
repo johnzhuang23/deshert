@@ -1,14 +1,16 @@
 import "./App.css";
+import "./Sticker.css";
 import React from "react";
 import { useState } from "react";
 import tshirt from "./shirtbackground.png";
+import eleven from "./images/eleven.png";
 import Picture from "./Picture.js";
-import TextTool from './TextTool.js'
+import TextTool from "./TextTool.js";
 import TextInput from "./TextInput.js";
 import Sticker from "./Sticker.js";
 import Draw from "./Draw.js";
 import { Stage, Layer, Text, Image, Line } from "react-konva";
-import Konva from 'konva';
+import Konva from "konva";
 
 function App() {
   let [content, setContent] = useState("");
@@ -23,13 +25,6 @@ function App() {
     };
   };
 
-  let [stickyLabel, setStickyLabel] = useState([]);
-  const handleClick = (e) => {
-    return () => {
-      setStickyLabel(e.target.value);
-    };
-  };
-
   let [color, setColor] = useState("");
   const addColor = (colorName) => {
     return () => {
@@ -38,7 +33,7 @@ function App() {
   };
 
   //draw=====================//
-  const [tool, setTool] = React.useState('pen');
+  const [tool, setTool] = React.useState("pen");
   const [lines, setLines] = React.useState([]);
   const isDrawing = React.useRef(false);
 
@@ -69,14 +64,11 @@ function App() {
   };
   //draw=====================//
 
-
-
   const [showPic, toggleShowPic] = useState(false);
   const [showText, toggleShowText] = useState(false);
   const [showSticker, toggleShowSticker] = useState(false);
   const [showDraw, toggleShowDraw] = useState(false);
-  const dragUrl = React.useRef();
-  const stageRef = React.useRef();
+
   return (
     <div className="App">
       <div id="grid-6x7">
@@ -127,22 +119,20 @@ function App() {
                 <Sticker stickyLabel={stickyLabel} />
               </Layer>
               <Layer>
-      
                 {lines.map((line, i) => (
-                <Line
-                  key={i}
-                  points={line.points}
-                  stroke="#df4b26"
-                  strokeWidth={5}
-                  tension={0.5}
-                  lineCap="round"
-                  globalCompositeOperation={
-                    line.tool === 'eraser' ? 'destination-out' : 'source-over'
-                  }
-                />
+                  <Line
+                    key={i}
+                    points={line.points}
+                    stroke="#df4b26"
+                    strokeWidth={5}
+                    tension={0.5}
+                    lineCap="round"
+                    globalCompositeOperation={
+                      line.tool === "eraser" ? "destination-out" : "source-over"
+                    }
+                  />
                 ))}
               </Layer>
-              
             </Stage>
 
             <img
@@ -155,21 +145,20 @@ function App() {
 
         <div id="grid-left-side">
           <h1 id="menu-title">Menu</h1>
-            <div id="menu-options">
-              <div id="pic" onClick={() => toggleShowPic(!showPic)}>
-                Toppics--------$5
-              </div>
-              <div id="text" onClick={() => toggleShowText(!showText)}>
-                Textra----------$1
-              </div>
-              <div id="sticker" onClick={() => toggleShowSticker(!showSticker)}>
-                Chef's Pick------$2
-              </div>
-              <div id="drawing" onClick={() => toggleShowDraw(!showDraw)}>
-                Today's Special--$5
-              </div>
+          <div id="menu-options">
+            <div id="pic" onClick={() => toggleShowPic(!showPic)}>
+              Toppics--------$5
             </div>
-          
+            <div id="text" onClick={() => toggleShowText(!showText)}>
+              Textra----------$1
+            </div>
+            <div id="sticker" onClick={() => toggleShowSticker(!showSticker)}>
+              Chef's Pick------$2
+            </div>
+            <div id="drawing" onClick={() => toggleShowDraw(!showDraw)}>
+              Today's Special--$5
+            </div>
+          </div>
         </div>
         <div id="grid-right-side">
           <h1 id="toolbar-title">Tool Bar</h1>
@@ -186,15 +175,22 @@ function App() {
             value={tool}
             onChange={(e) => {
               setTool(e.target.value);
-            }}>
+            }}
+          >
             <option value="pen">Pen</option>
             <option value="eraser">Eraser</option>
           </select>
 
           <h2>Add Stickers </h2>
           <button>onClick{handleClick}</button>
+          <h1>{content}</h1>
+          <button className="dropbtn"></button>
 
-          <Sticker />
+          <div className="dropup-content">
+            Stickers show up here
+            <Sticker />
+          </div>
+
           {showPic && <Picture />}
           {showText && <TextInput />}
           {showSticker && <Sticker />}
