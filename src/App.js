@@ -52,7 +52,7 @@ function App() {
   const [tool, setTool] = React.useState("pen");
   const [lines, setLines] = React.useState([]);
   const isDrawing = React.useRef(false);
-  // const [drawColor, setDrawColor] = React.useState('stroke');
+  const [drawColor, setDrawColor] = React.useState('#ffe4e1');
 
   const handleMouseUp = () => {
     isDrawing.current = false;
@@ -90,8 +90,15 @@ function App() {
     e.preventDefault();
     // console.log(isDrawing)
     // isDrawing.current = !isDrawing.current
-    setDrawingEnabled(!drawingEnabled);
-  };
+    setDrawingEnabled(!drawingEnabled)
+  } 
+
+  const handleDrawColor = (e) => {
+    // console.log(e.target.value)
+
+    setDrawColor(e.target.value)
+  }
+
 
   const [showPic, toggleShowPic] = useState(false);
   const [showText, toggleShowText] = useState(false);
@@ -229,15 +236,18 @@ function App() {
           <h2>Draw Something</h2>
           <p>{drawingEnabled ? "true" : "false"}</p>
           <button onClick={handleDrawButton}>Draw</button>
-          {/* <select
-            value={stroke}
-            onChange={(e) => {
-              setDrawColor(e.target.value);
-            }}> */}
-          {/* <option value="red">Red</option>
-            <option value="blue">Blue</option>
-          </select> */}
           <select
+            onChange={handleDrawColor}>
+            <option value="#ffe4e1">Misty Rose</option>
+            <option value="yellow">Yellow</option>
+            <option value="#3D9970">Olive</option>
+            <option value="red">Red</option>
+            <option value="#01FF70">Lime</option>
+            <option value="blue">Blue</option>
+            <option value="white">White</option>
+          </select>
+          <select 
+
             value={tool}
             onChange={(e) => {
               setTool(e.target.value);
