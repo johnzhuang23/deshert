@@ -7,7 +7,7 @@ import { Stage, Layer, Text } from "react-konva";
 import Konva from "konva";
 // import { getByPlaceholderText } from '@testing-library/react';
 
-export default function Textinput(props) {
+export default function TextInput(props) {
   let [textState, setTextState] = useState({
     isDragging: false,
     x: 20,
