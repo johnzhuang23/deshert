@@ -1,33 +1,41 @@
 import "./App.css";
+import "./Sticker.css";
 import React from "react";
 import { useState } from "react";
 import tshirt from "./shirtbackground.png";
+import eleven from "./images/eleven.png";
 import Picture from "./Picture.js";
-import TextTool from './texttool.js'
-import TextInput from "./Textinput.js";
+import TextTool from "./TextTool.js";
+import TextInput from "./TextInput.js";
 import Sticker from "./Sticker.js";
 import Draw from "./Draw.js";
 import { Stage, Layer, Text, Image, Line } from "react-konva";
-import Konva from 'konva';
+import Konva from "konva";
+import useImage from "use-image";
 
 function App() {
+  const dragUrl = React.useRef();
+  const stageRef = React.useRef();
+  const [images, setImages] = React.useState([
+    {
+      src: "https://konvajs.org/assets/lion.png",
+      x: 100,
+      y: 100,
+      offsetX: 100,
+      offsetY: 100,
+    },
+  ]);
 
   let [content, setContent] = useState("");
   const handleChange = (e) => {
     return setContent(e.target.value);
   };
+  // let [stickyLabel, setStickylabel]
 
   let [textcolor, setTextColor] = useState("");
   const handleTextColor = (textColorName) => {
     return () => {
       setTextColor(textColorName);
-    };
-  };
-
-  let [stickyLabel, setStickyLabel] = useState([]);
-  const handleClick = (e) => {
-    return () => {
-      setStickyLabel(e.target.value);
     };
   };
 
@@ -38,17 +46,13 @@ function App() {
     };
   };
 
+  // ...
 
-
-    // ...
-  
   //draw=====================//
-  const [tool, setTool] = React.useState('pen');
+  const [tool, setTool] = React.useState("pen");
   const [lines, setLines] = React.useState([]);
   const isDrawing = React.useRef(false);
   // const [drawColor, setDrawColor] = React.useState('stroke');
-
-
 
   const handleMouseUp = () => {
     isDrawing.current = false;
@@ -70,34 +74,30 @@ function App() {
     setLines(lines.concat());
   };
 
-  let [drawingEnabled, setDrawingEnabled] = useState(false)
+  let [drawingEnabled, setDrawingEnabled] = useState(false);
 
   const handleMouseDown = (e) => {
-    if (drawingEnabled){
-      isDrawing.current = true
+    if (drawingEnabled) {
+      isDrawing.current = true;
       const pos = e.target.getStage().getPointerPosition();
       setLines([...lines, { tool, points: [pos.x, pos.y] }]);
     }
   };
 
-
   //draw=====================//
-  
+
   const handleDrawButton = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // console.log(isDrawing)
     // isDrawing.current = !isDrawing.current
-    setDrawingEnabled(!drawingEnabled)
-  } 
-
-
+    setDrawingEnabled(!drawingEnabled);
+  };
 
   const [showPic, toggleShowPic] = useState(false);
   const [showText, toggleShowText] = useState(false);
   const [showSticker, toggleShowSticker] = useState(false);
   const [showDraw, toggleShowDraw] = useState(false);
-  const dragUrl = React.useRef();
-  const stageRef = React.useRef();
+
   return (
     <div className="App">
       <div id="grid-6x7">
@@ -127,45 +127,71 @@ function App() {
 
         <div id="grid-shirt">
           <div id="shirt">
-            <Stage
-              width={200}
-              height={400}
-              ref={stageRef}
-              onMouseDown={handleMouseDown}
-              onMousemove={handleMouseMove}
-              onMouseup={handleMouseUp}
-              style={{
-                margin: "130px 195px",
-                border: "1px solid red",
-                zIndex: "990",
-                position: "absolute",
+            <div
+              onDrop={(e) => {
+                e.preventDefault();
+                console.log("hi");
+                // register event position
+                stageRef.current.setPointersPositions(e);
+                // add image
+                setImages(
+                  images.concat([
+                    {
+                      ...stageRef.current.getPointerPosition(),
+                      src: dragUrl.current,
+                    },
+                  ])
+                );
               }}
+              onDragOver={(e) => e.preventDefault()}
             >
-              <Layer>
-                <TextInput content={content} />
-              </Layer>
-              <Layer>
-                <Sticker stickyLabel={stickyLabel} />
-              </Layer>
-              <Layer>
-      
-                {lines.map((line, i) => (
-                <Line
-                  key={i}
-                  points={line.points}
-                  stroke="#df4b26"
-                  strokeWidth={5}
-                  tension={0.5}
-                  lineCap="round"
-                  globalCompositeOperation={
-                    line.tool === 'eraser' ? 'destination-out' : 'source-over'
-                  }
+              <Stage
+                ref={stageRef}
+                width={200}
+                height={400}
+                onMouseDown={handleMouseDown}
+                onMousemove={handleMouseMove}
+                onMouseup={handleMouseUp}
+                style={{
+                  margin: "130px 195px",
+                  border: "1px solid red",
+                  zIndex: "990",
+                  position: "absolute",
+                }}
+              >
+                <Layer>
+                  <TextInput content={content} />
+                </Layer>
+                <Layer>
+                  {lines.map((line, i) => (
+                    <Line
+                      key={i}
+                      points={line.points}
+                      stroke="#df4b26"
+                      strokeWidth={5}
+                      tension={0.5}
+                      lineCap="round"
+                      globalCompositeOperation={
+                        line.tool === "eraser"
+                          ? "destination-out"
+                          : "source-over"
+                      }
+                    />
+                  ))}
+                </Layer>
+                {/* <Layer>
+                <Image
+                  image={image}
+                  x={0}
+                  y={0}
+                  // I will use offset to set origin to the center of the image
+                  offsetX={100}
+                  offsetY={100}
                 />
-                ))}
-              </Layer>
-              
-            </Stage>
-
+              </Layer> */}
+                <Sticker images={images} />
+              </Stage>
+            </div>
             <img
               id="tshirtFacing"
               src={tshirt}
@@ -176,21 +202,20 @@ function App() {
 
         <div id="grid-left-side">
           <h1 id="menu-title">Menu</h1>
-            <div id="menu-options">
-              <div id="pic" onClick={() => toggleShowPic(!showPic)}>
-                Toppics--------$5
-              </div>
-              <div id="text" onClick={() => toggleShowText(!showText)}>
-                Textra----------$1
-              </div>
-              <div id="sticker" onClick={() => toggleShowSticker(!showSticker)}>
-                Chef's Pick------$2
-              </div>
-              <div id="drawing" onClick={() => toggleShowDraw(!showDraw)}>
-                Today's Special--$5
-              </div>
+          <div id="menu-options">
+            <div id="pic" onClick={() => toggleShowPic(!showPic)}>
+              Toppics--------$5
             </div>
-          
+            <div id="text" onClick={() => toggleShowText(!showText)}>
+              Textra----------$1
+            </div>
+            <div id="sticker" onClick={() => toggleShowSticker(!showSticker)}>
+              Chef's Pick------$2
+            </div>
+            <div id="drawing" onClick={() => toggleShowDraw(!showDraw)}>
+              Today's Special--$5
+            </div>
+          </div>
         </div>
         <div id="grid-right-side">
           <h1 id="toolbar-title">Tool Bar</h1>
@@ -201,34 +226,43 @@ function App() {
             onChange={handleChange}
             placeholder="say something"
           />
-
           <h2>Draw Something</h2>
-          <p>{drawingEnabled ? 'true' : 'false' }</p>
+          <p>{drawingEnabled ? "true" : "false"}</p>
           <button onClick={handleDrawButton}>Draw</button>
           {/* <select
             value={stroke}
             onChange={(e) => {
               setDrawColor(e.target.value);
             }}> */}
-            {/* <option value="red">Red</option>
+          {/* <option value="red">Red</option>
             <option value="blue">Blue</option>
           </select> */}
           <select
             value={tool}
             onChange={(e) => {
               setTool(e.target.value);
-            }}>
+            }}
+          >
             <option value="pen">Pen</option>
             <option value="eraser">Eraser</option>
           </select>
-            
           <h2>Add Stickers </h2>
-          <button>onClick{handleClick}</button>
+          <button>Mouse hover for Stickers</button>
+          <img
+            alt="lion"
+            src="https://konvajs.org/assets/lion.png"
+            draggable="true"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          />
 
-          <Sticker />
+          <h1>{content}</h1>
+          <button className="dropbtn"></button>
+          <div className="dropup-content">Stickers show up here</div>
           {showPic && <Picture />}
           {showText && <TextInput />}
-          {showSticker && <Sticker />}
+
           {showDraw && <Draw />}
         </div>
       </div>
