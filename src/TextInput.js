@@ -15,15 +15,25 @@ export default function TextInput(props) {
     value: 80,
   });
 
-  return (
+
+  // console.log(props.fontSize)
+
+
+
+
+  return (  
+  
+
     <Text
       text={props.content}
       x={textState.x}
       y={textState.y}
-      fontSize={textState.value}
+      fontSize={props.fontSize}
+      // fontSize={textState.value}
       // value={textState.value}
       draggable
-      fill={textState.isDragging ? "green" : "black"}
+      fill={props.fill}
+      
       onDragStart={() => {
         setTextState({
           ...textState,
@@ -38,7 +48,11 @@ export default function TextInput(props) {
           x: e.target.x(),
           y: e.target.y(),
         });
-      }}
+        
+      }
+    }
+      
+    
     />
-  );
+  ); 
 }

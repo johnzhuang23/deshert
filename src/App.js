@@ -22,6 +22,7 @@ import advisory from "./images/stickers/advisory.png";
 import spitfire from "./images/stickers/spitfire.png";
 //===================
 import Picture from "./Picture.js";
+// import TextTool from "./TextTool.js";
 import TextInput from "./TextInput.js";
 import Sticker from "./Sticker.js";
 import Draw from "./Draw.js";
@@ -66,7 +67,7 @@ function App() {
     };
   };
 
-  // ...
+
 
   //draw=====================//
   const [tool, setTool] = React.useState("pen");
@@ -121,10 +122,27 @@ function App() {
     setDrawColor(e.target.value);
   };
 
+  let [textFontSize, setTextFontSize] = useState(14);
+
+  const handleFontSize = (e) => {
+    // console.log(e.target.value)
+
+    setTextFontSize(e.target.value);
+  };
+
+  let [textFontColor, setTextFontColor] = useState("black");
+
+  const handleTextFontColor = (e) => {
+    // console.log(e.target.value)
+
+    setTextFontColor(e.target.value);
+  };
+
   const [showPic, toggleShowPic] = useState(false);
   const [showText, toggleShowText] = useState(false);
   const [showSticker, toggleShowSticker] = useState(false);
   const [showDraw, toggleShowDraw] = useState(false);
+
 
   return (
     <div className="App">
@@ -158,7 +176,7 @@ function App() {
             <div
               onDrop={(e) => {
                 e.preventDefault();
-                console.log("hi");
+                // console.log("hi");
                 // register event position
                 stageRef.current.setPointersPositions(e);
                 // add image
@@ -196,7 +214,7 @@ function App() {
                       key={i}
                       points={line.points}
                       stroke={drawColor}
-                      strokeWidth={5}
+                      strokeWidth={10}
                       tension={0.5}
                       lineCap="round"
                       globalCompositeOperation={
@@ -208,7 +226,7 @@ function App() {
                   ))}
                 </Layer>
                 <Layer>
-                  <TextInput content={content} />
+                  <TextInput content={content} fontSize={textFontSize} fill={textFontColor}/>
                 </Layer>
                   <Sticker images={images} />
                 </Stage>
@@ -232,7 +250,7 @@ function App() {
           
           <div id="sticker-box">
             <h1> Chef's Pick </h1>
-            <h3 >Add Stickers freely but remember that you can peel off a sticker once sticked</h3>
+            <h3 >Add Stickers freely but remember that you can't peel off a sticker once sticked</h3>
             <div className="stickers">
               <img
                 src={cherry}
@@ -298,8 +316,8 @@ function App() {
                 onDragStart={(e) => {
                   dragUrl.current = e.target.src;
                 }}
+                
               />
-
               <img
                 className="img2"
                 alt=""
@@ -398,11 +416,9 @@ function App() {
                   dragUrl.current = e.target.src;
                 }}
               />
-
-         
-            </div>
+          </div>
+          </div>
           </div>        
-        </div>
 
         <div id="grid-right-side">
           <div id="text-box">
@@ -413,13 +429,30 @@ function App() {
               onChange={handleChange}
               placeholder="type here"
             />
+            <select onChange={handleFontSize}>
+                <option value="14">Small</option>
+                <option value="22">Medium</option>
+                <option value="26">Large</option>
+                <option value="38">Extra Large</option>
+                <option value="72">Family size</option>
+              
+
+            </select>
+            <select onChange={handleTextFontColor}>
+                <option value="black">Black</option>
+                <option value="#f5c71a">Deep Lemon</option>
+                <option value="red">Red</option>
+                <option value="white">White</option>
+                <option value="#FBCEB1">Apricot</option>
+                <option value="#30D5C8">Turqoise</option>
+            </select>
           </div>
           
           <div id="draw-box">
             <h1> Today's Special </h1>
             <h3>Nothing is more sepcial then your own drawing</h3>
             {/* <p>{drawingEnabled ? "true" : "false"}</p> */}
-            <h3 onClick={handleDrawButton}>{show ? 'Drawing Done' : 'Click to Start'}</h3>
+            <div id="drawButton" onClick={handleDrawButton}>{show ? 'Click to End Drawing' : 'Click to Start Drawing'}</div>
             
               <select onChange={handleDrawColor}>
                 <option value="#ffe4e1">Misty Rose</option>
@@ -452,7 +485,7 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 }
 
