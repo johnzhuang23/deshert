@@ -2,10 +2,26 @@ import "./App.css";
 import "./Sticker.css";
 import React from "react";
 import { useState } from "react";
+//===================
 import tshirt from "./shirtbackground.png";
-import eleven from "./images/eleven.png";
+import cherry from "./images/stickers/cherry.png";
+import banana from "./images/stickers/banana.png";
+import pizza from "./images/stickers/pizza.png";
+import snickers from "./images/stickers/snickers.png";
+import darksoul from "./images/stickers/darksoul.png";
+import bear from "./images/stickers/bear.png";
+import pushingp from "./images/stickers/pushingp.png";
+import questionmark from "./images/stickers/questionmark.png";
+import tooth from "./images/stickers/tooth.png";
+import smile from "./images/stickers/smile.png";
+import angry from "./images/stickers/angry.png";
+import cool from "./images/stickers/cool.png";
+import googlyeyeleft from "./images/stickers/googlyeyeleft.png";
+import googlyeyeright from "./images/stickers/googlyeyeright.png";
+import advisory from "./images/stickers/advisory.png";
+import spitfire from "./images/stickers/spitfire.png";
+//===================
 import Picture from "./Picture.js";
-import TextTool from "./TextTool.js";
 import TextInput from "./TextInput.js";
 import Sticker from "./Sticker.js";
 import Draw from "./Draw.js";
@@ -30,7 +46,11 @@ function App() {
   const handleChange = (e) => {
     return setContent(e.target.value);
   };
-  // let [stickyLabel, setStickylabel]
+  
+  let [contentPic, setContentPic] = useState("");
+  const handleChangePic = (e) => {
+    return setContentPic(e.target.value);
+  };
 
   let [textcolor, setTextColor] = useState("");
   const handleTextColor = (textColorName) => {
@@ -85,12 +105,14 @@ function App() {
   };
 
   //draw=====================//
+  const [show, toggleShow] = useState(false);
 
   const handleDrawButton = (e) => {
     e.preventDefault();
     // console.log(isDrawing)
     // isDrawing.current = !isDrawing.current
     setDrawingEnabled(!drawingEnabled);
+    toggleShow(!show);
   };
 
   const handleDrawColor = (e) => {
@@ -108,12 +130,12 @@ function App() {
     <div className="App">
       <div id="grid-6x7">
         <header id="grid-header">
-          <div id="header-title">deshert</div>
+          <div id="header-title">DeShert</div>
         </header>
 
         <header id="grid-color">
           <div id="color-buttons">
-            <div id="white-btn" onClick={addColor("whitesmoke")}>
+            <div id="white-btn" onClick={addColor("FloralWhite")}>
               Vanilla-White
             </div>
             <div id="black-btn" onClick={addColor("black")}>
@@ -159,12 +181,15 @@ function App() {
                 onMousemove={handleMouseMove}
                 onMouseup={handleMouseUp}
                 style={{
-                  margin: "130px 195px",
-                  border: "1px solid red",
+                  margin: "130px 200px",
+                  border: "1px solid darkgrey",
                   zIndex: "990",
                   position: "absolute",
                 }}
               >
+                <Layer>
+                  <Picture />
+                </Layer>
                 <Layer>
                   {lines.map((line, i) => (
                     <Line
@@ -185,9 +210,8 @@ function App() {
                 <Layer>
                   <TextInput content={content} />
                 </Layer>
-
-                <Sticker images={images} />
-              </Stage>
+                  <Sticker images={images} />
+                </Stage>
             </div>
             <img
               id="tshirtFacing"
@@ -199,126 +223,233 @@ function App() {
 
         <div id="grid-left-side">
           <h1 id="menu-title">Menu</h1>
-          <div id="menu-options">
-            <div id="pic" onClick={() => toggleShowPic(!showPic)}>
-              Toppics--------$5
-            </div>
-            <div id="text" onClick={() => toggleShowText(!showText)}>
-              Textra----------$1
-            </div>
-            <div id="sticker" onClick={() => toggleShowSticker(!showSticker)}>
-              Chef's Pick------$2
-            </div>
-            <div id="drawing" onClick={() => toggleShowDraw(!showDraw)}>
-              Today's Special--$5
-            </div>
+          <div id="menu-list">
+            <h3>Toppics · · · · · · · · · · · · · · · · · · · · · ·$2</h3>
+            <h3>Textra· · · · · · · · · · · · · · · · · · · · · · ·$3</h3>
+            <h3>Today's Special · · · · · · · · · · · · · · ·$4</h3>
+            <h3>Chef's Pick · · · · · · · · · · · · · · · · · · ·$5</h3>
           </div>
+          
+          <div id="sticker-box">
+            <h1> Chef's Pick </h1>
+            <h3 >Add Stickers freely but remember that you can peel off a sticker once sticked</h3>
+            <div className="stickers">
+              <img
+                src={cherry}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+              <img
+                src={banana}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+              <img
+                src={snickers}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+              <img
+                src={pizza}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+                <img
+                src={darksoul}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+              <img
+                src={bear}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+              <img
+                className="img2"
+                alt=""
+                src={pushingp}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+
+              <img
+                className="img2"
+                alt=""
+                src={questionmark}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+              <img
+                className="img2"
+                alt=""
+                src={tooth}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+              <img
+                className="img2"
+                alt=""
+                src={smile}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+              <img
+                className="img2"
+                alt=""
+                src={angry}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+                <img
+                className="img2"
+                alt=""
+                src={cool}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+                <img
+            
+                src={googlyeyeleft}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+                <img
+                className="img2"
+                alt=""
+                src={googlyeyeright}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+                <img
+                className="img2"
+                alt=""
+                src={advisory}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+                <img
+                className="img2"
+                alt=""
+                src={spitfire}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+
+         
+            </div>
+          </div>        
         </div>
+
         <div id="grid-right-side">
-          <h1 id="toolbar-title">Tool Bar</h1>
-          <h2 id="toolbar-subtitle">Add a little sauce to your deshert</h2>
-          <h2>design your text </h2>
-          <input
-            type="text"
-            onChange={handleChange}
-            placeholder="say something"
-          />
-          <h1>{content}</h1>
-          <h2>Draw Something</h2>
-          <p>{drawingEnabled ? "true" : "false"}</p>
-          <button onClick={handleDrawButton}>Draw</button>
-          <select onChange={handleDrawColor}>
-            <option value="#ffe4e1">Misty Rose</option>
-            <option value="yellow">Yellow</option>
-            <option value="#3D9970">Olive</option>
-            <option value="red">Red</option>
-            <option value="#01FF70">Lime</option>
-            <option value="blue">Blue</option>
-            <option value="white">White</option>
-          </select>
-          <select
-            value={tool}
-            onChange={(e) => {
-              setTool(e.target.value);
-            }}
-          >
-            <option value="pen">Pen</option>
-            <option value="eraser">Eraser</option>
-          </select>
-          <h2>Add Stickers </h2>
-          <button>Mouse hover for Stickers</button>
-
-          <img
-            alt="lion"
-            src="https://konvajs.org/assets/lion.png"
-            draggable="true"
-            width="50"
-            height="50"
-            onDragStart={(e) => {
-              dragUrl.current = e.target.src;
-            }}
-          />
-          <img
-            alt="lion"
-            src=" https://i.pinimg.com/564x/78/9f/cf/789fcf5f9070f81431ea9b587387de85.jpg"
-            draggable="true"
-            width="50"
-            height="50"
-            onDragStart={(e) => {
-              dragUrl.current = e.target.src;
-            }}
-          />
-          <img
-            className="img2"
-            alt=""
-            src="https://slm-assets.secondlife.com/assets/25911713/lightbox/easter%20yoda.jpg?1584671285"
-            draggable="true"
-            width="50"
-            height="50"
-            onDragStart={(e) => {
-              dragUrl.current = e.target.src;
-            }}
-          />
-
-          <img
-            className="img2"
-            alt=""
-            src="https://webtrickz.com/wp-content/uploads/2020/03/memoji-sticker-transparent-background.png"
-            draggable="true"
-            width="50"
-            height="50"
-            onDragStart={(e) => {
-              dragUrl.current = e.target.src;
-            }}
-          />
-          <img
-            className="img2"
-            alt=""
-            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/004eebdd-fbb2-40d1-a89d-0612b04c2a8c/dk95rq-97c36be3-beaf-4b7a-a91b-3d107f7345c6.png"
-            draggable="true"
-            width="50"
-            height="50"
-            onDragStart={(e) => {
-              dragUrl.current = e.target.src;
-            }}
-          />
-          <img
-            className="img2"
-            alt=""
-            src="https://i.pinimg.com/474x/fe/43/d6/fe43d649aa3a106c44dc173b3f8dc874.jpg"
-            draggable="true"
-            width="80"
-            height="80"
-            onDragStart={(e) => {
-              dragUrl.current = e.target.src;
-            }}
-          />
-
-          <button className="dropbtn"></button>
-          <div className="dropup-content">Stickers show up here</div>
-          {showPic && <Picture />}
-          {showText && <TextInput />}
-          {showDraw && <Draw />}
+          <div id="text-box">
+            <h1> Textra </h1>
+            <h3>Shout out the words in your mind</h3>
+            <input
+              type="text"
+              onChange={handleChange}
+              placeholder="type here"
+            />
+          </div>
+          
+          <div id="draw-box">
+            <h1> Today's Special </h1>
+            <h3>Nothing is more sepcial then your own drawing</h3>
+            {/* <p>{drawingEnabled ? "true" : "false"}</p> */}
+            <h3 onClick={handleDrawButton}>{show ? 'Drawing Done' : 'Click to Start'}</h3>
+            
+              <select onChange={handleDrawColor}>
+                <option value="#ffe4e1">Misty Rose</option>
+                <option value="yellow">Yellow</option>
+                <option value="#3D9970">Olive</option>
+                <option value="red">Red</option>
+                <option value="#01FF70">Lime</option>
+                <option value="blue">Blue</option>
+                <option value="white">White</option>
+              </select>
+            
+              <select
+                value={tool}
+                onChange={(e) => {
+                  setTool(e.target.value);
+                }}>
+                <option value="pen">Pen</option>
+                <option value="eraser">Eraser</option>
+              </select>
+            
+          </div>
+          <div id="image-box">
+            <h1> Toppics </h1>
+            <h3>Leave a nice image here</h3>
+            <input
+              type="text"
+              onChange={handleChangePic}
+              placeholder="url"
+            />
+          </div>
         </div>
       </div>
     </div>
