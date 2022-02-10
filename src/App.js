@@ -1,10 +1,12 @@
 import "./App.css";
+import "./Sticker.css";
 import React from "react";
 import { useState } from "react";
 import tshirt from "./shirtbackground.png";
+import eleven from "./images/eleven.png";
 import Picture from "./Picture.js";
-import TextTool from "./texttool.js";
-import TextInput from "./Textinput.js";
+import TextTool from "./TextTool.js";
+import TextInput from "./TextInput.js";
 import Sticker from "./Sticker.js";
 import Draw from "./Draw.js";
 import { Stage, Layer, Text, Image, Line } from "react-konva";
@@ -20,13 +22,6 @@ function App() {
   const handleTextColor = (textColorName) => {
     return () => {
       setTextColor(textColorName);
-    };
-  };
-
-  let [stickyLabel, setStickyLabel] = useState([]);
-  const handleClick = (e) => {
-    return () => {
-      setStickyLabel(e.target.value);
     };
   };
 
@@ -88,8 +83,7 @@ function App() {
   const [showText, toggleShowText] = useState(false);
   const [showSticker, toggleShowSticker] = useState(false);
   const [showDraw, toggleShowDraw] = useState(false);
-  const dragUrl = React.useRef();
-  const stageRef = React.useRef();
+
   return (
     <div className="App">
       <div id="grid-6x7">
@@ -214,8 +208,14 @@ function App() {
 
           <h2>Add Stickers </h2>
           <button>onClick{handleClick}</button>
+          <h1>{content}</h1>
+          <button className="dropbtn"></button>
 
-          <Sticker />
+          <div className="dropup-content">
+            Stickers show up here
+            <Sticker />
+          </div>
+
           {showPic && <Picture />}
           {showText && <TextInput />}
           {showSticker && <Sticker />}
