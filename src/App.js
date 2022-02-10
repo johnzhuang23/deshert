@@ -3,15 +3,14 @@ import React from "react";
 import { useState } from "react";
 import tshirt from "./shirtbackground.png";
 import Picture from "./Picture.js";
-import TextTool from './texttool.js'
+import TextTool from "./texttool.js";
 import TextInput from "./Textinput.js";
 import Sticker from "./Sticker.js";
 import Draw from "./Draw.js";
 import { Stage, Layer, Text, Image, Line } from "react-konva";
-import Konva from 'konva';
+import Konva from "konva";
 
 function App() {
-
   let [content, setContent] = useState("");
   const handleChange = (e) => {
     return setContent(e.target.value);
@@ -38,17 +37,13 @@ function App() {
     };
   };
 
+  // ...
 
-
-    // ...
-  
   //draw=====================//
-  const [tool, setTool] = React.useState('pen');
+  const [tool, setTool] = React.useState("pen");
   const [lines, setLines] = React.useState([]);
   const isDrawing = React.useRef(false);
   // const [drawColor, setDrawColor] = React.useState('stroke');
-
-
 
   const handleMouseUp = () => {
     isDrawing.current = false;
@@ -70,27 +65,24 @@ function App() {
     setLines(lines.concat());
   };
 
-  let [drawingEnabled, setDrawingEnabled] = useState(false)
+  let [drawingEnabled, setDrawingEnabled] = useState(false);
 
   const handleMouseDown = (e) => {
-    if (drawingEnabled){
-      isDrawing.current = true
+    if (drawingEnabled) {
+      isDrawing.current = true;
       const pos = e.target.getStage().getPointerPosition();
       setLines([...lines, { tool, points: [pos.x, pos.y] }]);
     }
   };
 
-
   //draw=====================//
-  
+
   const handleDrawButton = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // console.log(isDrawing)
     // isDrawing.current = !isDrawing.current
-    setDrawingEnabled(!drawingEnabled)
-  } 
-
-
+    setDrawingEnabled(!drawingEnabled);
+  };
 
   const [showPic, toggleShowPic] = useState(false);
   const [showText, toggleShowText] = useState(false);
@@ -148,22 +140,20 @@ function App() {
                 <Sticker stickyLabel={stickyLabel} />
               </Layer>
               <Layer>
-      
                 {lines.map((line, i) => (
-                <Line
-                  key={i}
-                  points={line.points}
-                  stroke="#df4b26"
-                  strokeWidth={5}
-                  tension={0.5}
-                  lineCap="round"
-                  globalCompositeOperation={
-                    line.tool === 'eraser' ? 'destination-out' : 'source-over'
-                  }
-                />
+                  <Line
+                    key={i}
+                    points={line.points}
+                    stroke="#df4b26"
+                    strokeWidth={5}
+                    tension={0.5}
+                    lineCap="round"
+                    globalCompositeOperation={
+                      line.tool === "eraser" ? "destination-out" : "source-over"
+                    }
+                  />
                 ))}
               </Layer>
-              
             </Stage>
 
             <img
@@ -176,21 +166,20 @@ function App() {
 
         <div id="grid-left-side">
           <h1 id="menu-title">Menu</h1>
-            <div id="menu-options">
-              <div id="pic" onClick={() => toggleShowPic(!showPic)}>
-                Toppics--------$5
-              </div>
-              <div id="text" onClick={() => toggleShowText(!showText)}>
-                Textra----------$1
-              </div>
-              <div id="sticker" onClick={() => toggleShowSticker(!showSticker)}>
-                Chef's Pick------$2
-              </div>
-              <div id="drawing" onClick={() => toggleShowDraw(!showDraw)}>
-                Today's Special--$5
-              </div>
+          <div id="menu-options">
+            <div id="pic" onClick={() => toggleShowPic(!showPic)}>
+              Toppics--------$5
             </div>
-          
+            <div id="text" onClick={() => toggleShowText(!showText)}>
+              Textra----------$1
+            </div>
+            <div id="sticker" onClick={() => toggleShowSticker(!showSticker)}>
+              Chef's Pick------$2
+            </div>
+            <div id="drawing" onClick={() => toggleShowDraw(!showDraw)}>
+              Today's Special--$5
+            </div>
+          </div>
         </div>
         <div id="grid-right-side">
           <h1 id="toolbar-title">Tool Bar</h1>
@@ -203,25 +192,26 @@ function App() {
           />
 
           <h2>Draw Something</h2>
-          <p>{drawingEnabled ? 'true' : 'false' }</p>
+          <p>{drawingEnabled ? "true" : "false"}</p>
           <button onClick={handleDrawButton}>Draw</button>
           {/* <select
             value={stroke}
             onChange={(e) => {
               setDrawColor(e.target.value);
             }}> */}
-            {/* <option value="red">Red</option>
+          {/* <option value="red">Red</option>
             <option value="blue">Blue</option>
           </select> */}
           <select
             value={tool}
             onChange={(e) => {
               setTool(e.target.value);
-            }}>
+            }}
+          >
             <option value="pen">Pen</option>
             <option value="eraser">Eraser</option>
           </select>
-            
+
           <h2>Add Stickers </h2>
           <button>onClick{handleClick}</button>
 
