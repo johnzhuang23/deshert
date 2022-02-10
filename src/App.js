@@ -3,14 +3,15 @@ import React from "react";
 import { useState } from "react";
 import tshirt from "./shirtbackground.png";
 import Picture from "./Picture.js";
-import TextTool from './TextTool.js'
-import TextInput from "./TextInput.js";
+import TextTool from './texttool.js'
+import TextInput from "./Textinput.js";
 import Sticker from "./Sticker.js";
 import Draw from "./Draw.js";
 import { Stage, Layer, Text, Image, Line } from "react-konva";
 import Konva from 'konva';
 
 function App() {
+
   let [content, setContent] = useState("");
   const handleChange = (e) => {
     return setContent(e.target.value);
@@ -37,10 +38,17 @@ function App() {
     };
   };
 
+
+
+    // ...
+  
   //draw=====================//
   const [tool, setTool] = React.useState('pen');
   const [lines, setLines] = React.useState([]);
   const isDrawing = React.useRef(false);
+  // const [drawColor, setDrawColor] = React.useState('stroke');
+
+
 
   const handleMouseUp = () => {
     isDrawing.current = false;
@@ -62,12 +70,25 @@ function App() {
     setLines(lines.concat());
   };
 
+  let [drawingEnabled, setDrawingEnabled] = useState(false)
+
   const handleMouseDown = (e) => {
-    isDrawing.current = true;
-    const pos = e.target.getStage().getPointerPosition();
-    setLines([...lines, { tool, points: [pos.x, pos.y] }]);
+    if (drawingEnabled){
+      isDrawing.current = true
+      const pos = e.target.getStage().getPointerPosition();
+      setLines([...lines, { tool, points: [pos.x, pos.y] }]);
+    }
   };
+
+
   //draw=====================//
+  
+  const handleDrawButton = (e) => {
+    e.preventDefault()
+    // console.log(isDrawing)
+    // isDrawing.current = !isDrawing.current
+    setDrawingEnabled(!drawingEnabled)
+  } 
 
 
 
@@ -182,6 +203,16 @@ function App() {
           />
 
           <h2>Draw Something</h2>
+          <p>{drawingEnabled ? 'true' : 'false' }</p>
+          <button onClick={handleDrawButton}>Draw</button>
+          {/* <select
+            value={stroke}
+            onChange={(e) => {
+              setDrawColor(e.target.value);
+            }}> */}
+            {/* <option value="red">Red</option>
+            <option value="blue">Blue</option>
+          </select> */}
           <select
             value={tool}
             onChange={(e) => {
@@ -190,7 +221,7 @@ function App() {
             <option value="pen">Pen</option>
             <option value="eraser">Eraser</option>
           </select>
-
+            
           <h2>Add Stickers </h2>
           <button>onClick{handleClick}</button>
 
