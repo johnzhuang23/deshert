@@ -12,6 +12,7 @@ export default function TextInput(props) {
     isDragging: false,
     x: 20,
     y: 20,
+    value: 80,
   });
 
   return (
@@ -19,7 +20,7 @@ export default function TextInput(props) {
       text={props.content}
       x={textState.x}
       y={textState.y}
-      fontsize={30}
+      fontSize={textState.value}
       // value={textState.value}
       draggable
       fill={textState.isDragging ? "green" : "black"}
@@ -32,6 +33,7 @@ export default function TextInput(props) {
       setZIndex="3"
       onDragEnd={(e) => {
         setTextState({
+          ...textState,
           isDragging: false,
           x: e.target.x(),
           y: e.target.y(),

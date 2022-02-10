@@ -52,7 +52,7 @@ function App() {
   const [tool, setTool] = React.useState("pen");
   const [lines, setLines] = React.useState([]);
   const isDrawing = React.useRef(false);
-  const [drawColor, setDrawColor] = React.useState('#ffe4e1');
+  const [drawColor, setDrawColor] = React.useState("#ffe4e1");
 
   const handleMouseUp = () => {
     isDrawing.current = false;
@@ -90,15 +90,14 @@ function App() {
     e.preventDefault();
     // console.log(isDrawing)
     // isDrawing.current = !isDrawing.current
-    setDrawingEnabled(!drawingEnabled)
-  } 
+    setDrawingEnabled(!drawingEnabled);
+  };
 
   const handleDrawColor = (e) => {
     // console.log(e.target.value)
 
-    setDrawColor(e.target.value)
-  }
-
+    setDrawColor(e.target.value);
+  };
 
   const [showPic, toggleShowPic] = useState(false);
   const [showText, toggleShowText] = useState(false);
@@ -167,14 +166,11 @@ function App() {
                 }}
               >
                 <Layer>
-                  <TextInput content={content} />
-                </Layer>
-                <Layer>
                   {lines.map((line, i) => (
                     <Line
                       key={i}
                       points={line.points}
-                      stroke="#df4b26"
+                      stroke={drawColor}
                       strokeWidth={5}
                       tension={0.5}
                       lineCap="round"
@@ -185,6 +181,9 @@ function App() {
                       }
                     />
                   ))}
+                </Layer>
+                <Layer>
+                  <TextInput content={content} />
                 </Layer>
 
                 <Sticker images={images} />
@@ -228,8 +227,7 @@ function App() {
           <h2>Draw Something</h2>
           <p>{drawingEnabled ? "true" : "false"}</p>
           <button onClick={handleDrawButton}>Draw</button>
-          <select
-            onChange={handleDrawColor}>
+          <select onChange={handleDrawColor}>
             <option value="#ffe4e1">Misty Rose</option>
             <option value="yellow">Yellow</option>
             <option value="#3D9970">Olive</option>
@@ -238,8 +236,7 @@ function App() {
             <option value="blue">Blue</option>
             <option value="white">White</option>
           </select>
-          <select 
-
+          <select
             value={tool}
             onChange={(e) => {
               setTool(e.target.value);
@@ -255,6 +252,18 @@ function App() {
             alt="lion"
             src="https://konvajs.org/assets/lion.png"
             draggable="true"
+            width="50"
+            height="50"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          />
+          <img
+            alt="lion"
+            src=" https://i.pinimg.com/564x/78/9f/cf/789fcf5f9070f81431ea9b587387de85.jpg"
+            draggable="true"
+            width="50"
+            height="50"
             onDragStart={(e) => {
               dragUrl.current = e.target.src;
             }}
