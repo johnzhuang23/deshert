@@ -186,16 +186,7 @@ function App() {
                     />
                   ))}
                 </Layer>
-                {/* <Layer>
-                <Image
-                  image={image}
-                  x={0}
-                  y={0}
-                  // I will use offset to set origin to the center of the image
-                  offsetX={100}
-                  offsetY={100}
-                />
-              </Layer> */}
+
                 <Sticker images={images} />
               </Stage>
             </div>
@@ -233,6 +224,7 @@ function App() {
             onChange={handleChange}
             placeholder="say something"
           />
+          <h1>{content}</h1>
           <h2>Draw Something</h2>
           <p>{drawingEnabled ? "true" : "false"}</p>
           <button onClick={handleDrawButton}>Draw</button>
@@ -258,6 +250,7 @@ function App() {
           </select>
           <h2>Add Stickers </h2>
           <button>Mouse hover for Stickers</button>
+
           <img
             alt="lion"
             src="https://konvajs.org/assets/lion.png"
@@ -266,13 +259,56 @@ function App() {
               dragUrl.current = e.target.src;
             }}
           />
+          <img
+            className="img2"
+            alt=""
+            src="https://slm-assets.secondlife.com/assets/25911713/lightbox/easter%20yoda.jpg?1584671285"
+            draggable="true"
+            width="50"
+            height="50"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          />
 
-          <h1>{content}</h1>
+          <img
+            className="img2"
+            alt=""
+            src="https://webtrickz.com/wp-content/uploads/2020/03/memoji-sticker-transparent-background.png"
+            draggable="true"
+            width="50"
+            height="50"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          />
+          <img
+            className="img2"
+            alt=""
+            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/004eebdd-fbb2-40d1-a89d-0612b04c2a8c/dk95rq-97c36be3-beaf-4b7a-a91b-3d107f7345c6.png"
+            draggable="true"
+            width="50"
+            height="50"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          />
+          <img
+            className="img2"
+            alt=""
+            src="https://i.pinimg.com/474x/fe/43/d6/fe43d649aa3a106c44dc173b3f8dc874.jpg"
+            draggable="true"
+            width="80"
+            height="80"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          />
+
           <button className="dropbtn"></button>
           <div className="dropup-content">Stickers show up here</div>
           {showPic && <Picture />}
           {showText && <TextInput />}
-
           {showDraw && <Draw />}
         </div>
       </div>
