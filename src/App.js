@@ -18,7 +18,7 @@ function App() {
   const stageRef = React.useRef();
   const [images, setImages] = React.useState([
     {
-      src: "https://konvajs.org/assets/lion.png",
+      src: { Image },
       x: 100,
       y: 100,
       offsetX: 100,
