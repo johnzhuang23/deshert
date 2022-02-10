@@ -11,12 +11,26 @@ import Sticker from "./Sticker.js";
 import Draw from "./Draw.js";
 import { Stage, Layer, Text, Image, Line } from "react-konva";
 import Konva from "konva";
+import useImage from "use-image";
 
 function App() {
+  const dragUrl = React.useRef();
+  const stageRef = React.useRef();
+  const [images, setImages] = React.useState([
+    {
+      src: "https://konvajs.org/assets/lion.png",
+      x: 100,
+      y: 100,
+      offsetX: 100,
+      offsetY: 100,
+    },
+  ]);
+
   let [content, setContent] = useState("");
   const handleChange = (e) => {
     return setContent(e.target.value);
   };
+  // let [stickyLabel, setStickylabel]
 
   let [textcolor, setTextColor] = useState("");
   const handleTextColor = (textColorName) => {
@@ -113,43 +127,71 @@ function App() {
 
         <div id="grid-shirt">
           <div id="shirt">
-            <Stage
-              width={200}
-              height={400}
-              ref={stageRef}
-              onMouseDown={handleMouseDown}
-              onMousemove={handleMouseMove}
-              onMouseup={handleMouseUp}
-              style={{
-                margin: "130px 195px",
-                border: "1px solid red",
-                zIndex: "990",
-                position: "absolute",
+            <div
+              onDrop={(e) => {
+                e.preventDefault();
+                console.log("hi");
+                // register event position
+                stageRef.current.setPointersPositions(e);
+                // add image
+                setImages(
+                  images.concat([
+                    {
+                      ...stageRef.current.getPointerPosition(),
+                      src: dragUrl.current,
+                    },
+                  ])
+                );
               }}
+              onDragOver={(e) => e.preventDefault()}
             >
-              <Layer>
-                <TextInput content={content} />
-              </Layer>
-              <Layer>
-                <Sticker stickyLabel={stickyLabel} />
-              </Layer>
-              <Layer>
-                {lines.map((line, i) => (
-                  <Line
-                    key={i}
-                    points={line.points}
-                    stroke="#df4b26"
-                    strokeWidth={5}
-                    tension={0.5}
-                    lineCap="round"
-                    globalCompositeOperation={
-                      line.tool === "eraser" ? "destination-out" : "source-over"
-                    }
-                  />
-                ))}
-              </Layer>
-            </Stage>
-
+              <Stage
+                ref={stageRef}
+                width={200}
+                height={400}
+                onMouseDown={handleMouseDown}
+                onMousemove={handleMouseMove}
+                onMouseup={handleMouseUp}
+                style={{
+                  margin: "130px 195px",
+                  border: "1px solid red",
+                  zIndex: "990",
+                  position: "absolute",
+                }}
+              >
+                <Layer>
+                  <TextInput content={content} />
+                </Layer>
+                <Layer>
+                  {lines.map((line, i) => (
+                    <Line
+                      key={i}
+                      points={line.points}
+                      stroke="#df4b26"
+                      strokeWidth={5}
+                      tension={0.5}
+                      lineCap="round"
+                      globalCompositeOperation={
+                        line.tool === "eraser"
+                          ? "destination-out"
+                          : "source-over"
+                      }
+                    />
+                  ))}
+                </Layer>
+                {/* <Layer>
+                <Image
+                  image={image}
+                  x={0}
+                  y={0}
+                  // I will use offset to set origin to the center of the image
+                  offsetX={100}
+                  offsetY={100}
+                />
+              </Layer> */}
+                <Sticker images={images} />
+              </Stage>
+            </div>
             <img
               id="tshirtFacing"
               src={tshirt}
@@ -184,7 +226,6 @@ function App() {
             onChange={handleChange}
             placeholder="say something"
           />
-
           <h2>Draw Something</h2>
           <p>{drawingEnabled ? "true" : "false"}</p>
           <button onClick={handleDrawButton}>Draw</button>
@@ -205,20 +246,23 @@ function App() {
             <option value="pen">Pen</option>
             <option value="eraser">Eraser</option>
           </select>
-
           <h2>Add Stickers </h2>
-          <button>onClick{handleClick}</button>
+          <button>Mouse hover for Stickers</button>
+          <img
+            alt="lion"
+            src="https://konvajs.org/assets/lion.png"
+            draggable="true"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          />
+
           <h1>{content}</h1>
           <button className="dropbtn"></button>
-
-          <div className="dropup-content">
-            Stickers show up here
-            <Sticker />
-          </div>
-
+          <div className="dropup-content">Stickers show up here</div>
           {showPic && <Picture />}
           {showText && <TextInput />}
-          {showSticker && <Sticker />}
+
           {showDraw && <Draw />}
         </div>
       </div>
