@@ -15,8 +15,10 @@ const URLImage = ({ image }) => {
       x={image.x}
       y={image.y}
       // I will use offset to set origin to the center of the image
-      offsetX={100}
-      offsetY={100}
+      offsetX={10}
+      offsetY={10}
+      width={50}
+      height={50}
       // offsetX={img ? img.width / 1 : 0}
       // offsetY={img ? img.height / 1 : 0}
     />
