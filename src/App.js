@@ -20,10 +20,12 @@ import googlyeyeleft from "./images/stickers/googlyeyeleft.png";
 import googlyeyeright from "./images/stickers/googlyeyeright.png";
 import advisory from "./images/stickers/advisory.png";
 import spitfire from "./images/stickers/spitfire.png";
-import TransformerComponent from "./TransformerComponent";
+import nickycrying from "./images/stickers/nickycrying.png";
+import artpainting from "./images/stickers/artpainting.png";
 
 //===================
 import Picture from "./Picture.js";
+import TransformerComponent from "./TransformerComponent";
 // import TextTool from "./TextTool.js";
 import TextInput from "./TextInput.js";
 import Sticker from "./Sticker.js";
@@ -350,8 +352,6 @@ function App() {
                 }}
               />
               <img
-                className="img2"
-                alt=""
                 src={pushingp}
                 draggable="true"
                 width="50"
@@ -362,8 +362,6 @@ function App() {
                 
               />
               <img
-                className="img2"
-                alt=""
                 src={questionmark}
                 draggable="true"
                 width="50"
@@ -373,8 +371,6 @@ function App() {
                 }}
               />
               <img
-                className="img2"
-                alt=""
                 src={tooth}
                 draggable="true"
                 width="50"
@@ -384,8 +380,6 @@ function App() {
                 }}
               />
               <img
-                className="img2"
-                alt=""
                 src={smile}
                 draggable="true"
                 width="50"
@@ -395,8 +389,6 @@ function App() {
                 }}
               />
               <img
-                className="img2"
-                alt=""
                 src={angry}
                 draggable="true"
                 width="50"
@@ -406,8 +398,6 @@ function App() {
                 }}
               />
                 <img
-                className="img2"
-                alt=""
                 src={cool}
                 draggable="true"
                 width="50"
@@ -417,7 +407,6 @@ function App() {
                 }}
               />
                 <img
-            
                 src={googlyeyeleft}
                 draggable="true"
                 width="50"
@@ -427,8 +416,6 @@ function App() {
                 }}
               />
                 <img
-                className="img2"
-                alt=""
                 src={googlyeyeright}
                 draggable="true"
                 width="50"
@@ -438,8 +425,6 @@ function App() {
                 }}
               />
                 <img
-                className="img2"
-                alt=""
                 src={advisory}
                 draggable="true"
                 width="50"
@@ -449,9 +434,25 @@ function App() {
                 }}
               />
                 <img
-                className="img2"
-                alt=""
                 src={spitfire}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+                <img
+                src={nickycrying}
+                draggable="true"
+                width="50"
+                height="50"
+                onDragStart={(e) => {
+                  dragUrl.current = e.target.src;
+                }}
+              />
+                <img
+                src={artpainting}
                 draggable="true"
                 width="50"
                 height="50"
@@ -472,7 +473,7 @@ function App() {
               onChange={handleChange}
               placeholder="type here"
             />
-            <select onChange={handleFontSize}>
+            <select id="dropdown-size" onChange={handleFontSize}>
                 <option value="14">Small</option>
                 <option value="22">Medium</option>
                 <option value="26">Large</option>
@@ -481,7 +482,7 @@ function App() {
               
 
             </select>
-            <select onChange={handleTextFontColor}>
+            <select id="dropdown-colorT"onChange={handleTextFontColor}>
                 <option value="black">Black</option>
                 <option value="#f5c71a">Deep Lemon</option>
                 <option value="red">Red</option>
@@ -497,7 +498,7 @@ function App() {
             {/* <p>{drawingEnabled ? "true" : "false"}</p> */}
             <div id="drawButton" onClick={handleDrawButton}>{show ? 'Click to End Drawing' : 'Click to Start Drawing'}</div>
             
-              <select onChange={handleDrawColor}>
+              <select id="dropdown-colorD"onChange={handleDrawColor}>
                 <option value="#ffe4e1">Misty Rose</option>
                 <option value="yellow">Yellow</option>
                 <option value="#3D9970">Olive</option>
@@ -507,7 +508,7 @@ function App() {
                 <option value="white">White</option>
               </select>
             
-              <select
+              <select id="dropdown-pen"
                 value={tool}
                 onChange={(e) => {
                   setTool(e.target.value);
