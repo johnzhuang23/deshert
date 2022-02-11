@@ -11,77 +11,37 @@ const URLImage = ({ image }) => {
   const [img] = useImage(image.src);
   return (
     <Image
+      name="sticker"
       image={img}
       x={image.x}
       y={image.y}
+      draggable
+
       // I will use offset to set origin to the center of the image
       offsetX={10}
       offsetY={10}
       width={50}
       height={50}
-      // offsetX={img ? img.width / 1 : 0}
-      // offsetY={img ? img.height / 1 : 0}
+  
     />
   );
 };
 
-// let [stickyLabel, setStickyLabel] = useState([]);
-//   const stickerHandleClick = (e) => {
-//     console.log(e.target.childNodes);
-//     return () => {
-//       setStickyLabel(e.target.childNodes);
-//     };
-//   };
+
 
 export default function Sticker(props) {
   const dragUrl = React.useRef();
   const stageRef = React.useRef();
 
   return (
-    // <div>
-    /* <div className="img">
-          <img
-            className="img1"
-            alt="lion"
-            src="https://konvajs.org/assets/lion.png"
-            draggable="true"
-            onDragStart={(e) => {
-              dragUrl.current = e.target.src;
-            }}/>
-        </div>
-      </div>
-        onDrop={(e) => {
-          e.preventDefault();
-          // register event position
-          stageRef.current.setPointersPositions(e);
-          // add image
-          setImages(
-            images.concat([
-              {
-                ...stageRef.current.getPointerPosition(),
-                src: dragUrl.current,
-              },
-            ])
-          );
-        }}
-        onDragOver={(e) => e.preventDefault()} */
-
+    
     <Layer>
       {props.images.map((image) => {
         // console.log(image);
         return <URLImage image={image} />;
       })}
     </Layer>
-    /* </div>
-    </div> */
+  
   );
 }
 
-/* <Stage
-          width={window.innerWidth}
-          height={window.innerHeight}
-          style={{ border: "1px solid grey" }}
-          ref={stageRef}
-        ></Stage> */
-
-//   // render(<App />, document.getElementById("root"));
