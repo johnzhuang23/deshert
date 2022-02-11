@@ -487,7 +487,6 @@ function App() {
               <option value="#30D5C8">Turqoise</option>
             </select>
           </div>
-
           <div id="draw-box">
             <h1> Today's Special </h1>
             <h3>Nothing is more sepcial then your own drawing</h3>
