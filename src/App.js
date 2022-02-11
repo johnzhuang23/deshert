@@ -20,6 +20,8 @@ import googlyeyeleft from "./images/stickers/googlyeyeleft.png";
 import googlyeyeright from "./images/stickers/googlyeyeright.png";
 import advisory from "./images/stickers/advisory.png";
 import spitfire from "./images/stickers/spitfire.png";
+import TransformerComponent from "./TransformerComponent";
+
 //===================
 import Picture from "./Picture.js";
 // import TextTool from "./TextTool.js";
@@ -143,6 +145,42 @@ function App() {
   const [showSticker, toggleShowSticker] = useState(false);
   const [showDraw, toggleShowDraw] = useState(false);
 
+  // let [selectedShapeName, setShapeName] = useState("")
+  // const handleStageMouseDown = e => {
+  //   // isDrawing.current = true;
+  //   // const pos = e.target.getStage().getPointerPosition();
+  //   // setLines([...lines, { tool, points: [pos.x, pos.y] }]);
+  //   if (e.target === e.target.getStage()) {
+  //     setShapeName({
+  //       selectedShapeName: ""
+  //     });
+  //     return;
+  //   }
+  //   const clickedOnTransformer =
+  //     e.target.getParent().className === "Transformer";
+  //   if (clickedOnTransformer) {
+  //     return;
+  //   }
+  //   const name = e.target.name();
+  //   if (name) {
+  //     setShapeName({
+  //       selectedShapeName: name
+  //     });
+  //   } else {
+  //     setShapeName({
+  //       selectedShapeName: ""
+  //     });
+  //   }
+  //   console.log(selectedShapeName)
+  // };
+
+  
+  
+  const UploadImage = () => {
+    const [image] = useImage(contentPic);
+    return <Image draggable width={200} height={200} image={image} />;
+  };
+
 
   return (
     <div className="App">
@@ -206,7 +244,8 @@ function App() {
                 }}
               >
                 <Layer>
-                  <Picture />
+                  {/* <Picture /> */}
+                  <UploadImage/>
                 </Layer>
                 <Layer>
                   {lines.map((line, i) => (
@@ -227,8 +266,12 @@ function App() {
                 </Layer>
                 <Layer>
                   <TextInput content={content} fontSize={textFontSize} fill={textFontColor}/>
-                </Layer>
+                  <TransformerComponent selectedShapeName="text" />
+                  </Layer>
+                   {/* <Layer>  */}
                   <Sticker images={images} />
+                  {/* <TransformerComponent selectedShapeName="sticker"/> */}
+                  {/* </Layer> */}
                 </Stage>
             </div>
             <img
@@ -250,7 +293,7 @@ function App() {
           
           <div id="sticker-box">
             <h1> Chef's Pick </h1>
-            <h3 >Add Stickers freely but remember that you can't peel off a sticker once sticked</h3>
+            <h3 >Sprinkle your shirt with stickers</h3>
             <div className="stickers">
               <img
                 src={cherry}
@@ -480,8 +523,17 @@ function App() {
             <input
               type="text"
               onChange={handleChangePic}
-              placeholder="url"
+              placeholder="type URL here"
             />
+
+            <div>
+      
+              <input
+                type="file"
+                name="myImage"
+               />
+               
+            </div>
           </div>
         </div>
       </div>

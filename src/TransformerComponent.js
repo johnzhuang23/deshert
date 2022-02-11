@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { Transformer } from "react-konva";
-
 class TransformerComponent extends Component {
   //Helper for transforming objects
-
+  // constructor(props){
+  //   super(props)
+  //   this.
+  // }
   componentDidMount() {
     this.checkNode();
   }
@@ -15,13 +17,11 @@ class TransformerComponent extends Component {
     // attach or detach Transformer node
     const stage = this.transformer.getStage();
     const { selectedShapeName } = this.props;
-
     const selectedNode = stage.findOne("." + selectedShapeName);
     // do nothing if selected node is already attached
     if (selectedNode === this.transformer.node()) {
       return;
     }
-
     if (selectedNode) {
       // attach to another node
       this.transformer.attachTo(selectedNode);
@@ -41,5 +41,4 @@ class TransformerComponent extends Component {
     );
   }
 }
-
 export default TransformerComponent;

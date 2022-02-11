@@ -25,6 +25,7 @@ export default function TextInput(props) {
   
 
     <Text
+      name="text"
       text={props.content}
       x={textState.x}
       y={textState.y}
@@ -52,7 +53,7 @@ export default function TextInput(props) {
       }
     }
       
-    
+      
     />
   ); 
 }
