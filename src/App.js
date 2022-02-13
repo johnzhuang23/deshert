@@ -51,7 +51,7 @@ function App() {
   const handleChange = (e) => {
     return setContent(e.target.value);
   };
-  
+
   let [contentPic, setContentPic] = useState("");
   const handleChangePic = (e) => {
     return setContentPic(e.target.value);
@@ -70,8 +70,6 @@ function App() {
       setColor(colorName);
     };
   };
-
-
 
   //draw=====================//
   const [tool, setTool] = React.useState("pen");
@@ -176,13 +174,10 @@ function App() {
   //   console.log(selectedShapeName)
   // };
 
-  
-  
   const UploadImage = () => {
     const [image] = useImage(contentPic);
     return <Image draggable width={200} height={200} image={image} />;
   };
-
 
   return (
     <div className="App">
@@ -247,7 +242,7 @@ function App() {
               >
                 <Layer>
                   {/* <Picture /> */}
-                  <UploadImage/>
+                  <UploadImage />
                 </Layer>
                 <Layer>
                   {lines.map((line, i) => (
@@ -267,14 +262,18 @@ function App() {
                   ))}
                 </Layer>
                 <Layer>
-                  <TextInput content={content} fontSize={textFontSize} fill={textFontColor}/>
+                  <TextInput
+                    content={content}
+                    fontSize={textFontSize}
+                    fill={textFontColor}
+                  />
                   <TransformerComponent selectedShapeName="text" />
-                  </Layer>
-                   {/* <Layer>  */}
-                  <Sticker images={images} />
-                  {/* <TransformerComponent selectedShapeName="sticker"/> */}
-                  {/* </Layer> */}
-                </Stage>
+                </Layer>
+                {/* <Layer>  */}
+                <Sticker images={images} />
+                {/* <TransformerComponent selectedShapeName="sticker"/> */}
+                {/* </Layer> */}
+              </Stage>
             </div>
             <img
               id="tshirtFacing"
@@ -292,10 +291,10 @@ function App() {
             <h3>Today's Special · · · · · · · · · · · · · · ·$4</h3>
             <h3>Chef's Pick · · · · · · · · · · · · · · · · · · ·$5</h3>
           </div>
-          
+
           <div id="sticker-box">
             <h1> Chef's Pick </h1>
-            <h3 >Sprinkle your shirt with stickers</h3>
+            <h3>Sprinkle your shirt with stickers</h3>
             <div className="stickers">
               <img
                 src={cherry}
@@ -333,7 +332,7 @@ function App() {
                   dragUrl.current = e.target.src;
                 }}
               />
-                <img
+              <img
                 src={darksoul}
                 draggable="true"
                 width="50"
@@ -359,7 +358,6 @@ function App() {
                 onDragStart={(e) => {
                   dragUrl.current = e.target.src;
                 }}
-                
               />
               <img
                 src={questionmark}
@@ -397,7 +395,7 @@ function App() {
                   dragUrl.current = e.target.src;
                 }}
               />
-                <img
+              <img
                 src={cool}
                 draggable="true"
                 width="50"
@@ -406,7 +404,7 @@ function App() {
                   dragUrl.current = e.target.src;
                 }}
               />
-                <img
+              <img
                 src={googlyeyeleft}
                 draggable="true"
                 width="50"
@@ -415,7 +413,7 @@ function App() {
                   dragUrl.current = e.target.src;
                 }}
               />
-                <img
+              <img
                 src={googlyeyeright}
                 draggable="true"
                 width="50"
@@ -424,7 +422,7 @@ function App() {
                   dragUrl.current = e.target.src;
                 }}
               />
-                <img
+              <img
                 src={advisory}
                 draggable="true"
                 width="50"
@@ -433,7 +431,7 @@ function App() {
                   dragUrl.current = e.target.src;
                 }}
               />
-                <img
+              <img
                 src={spitfire}
                 draggable="true"
                 width="50"
@@ -442,7 +440,7 @@ function App() {
                   dragUrl.current = e.target.src;
                 }}
               />
-                <img
+              <img
                 src={nickycrying}
                 draggable="true"
                 width="50"
@@ -451,7 +449,7 @@ function App() {
                   dragUrl.current = e.target.src;
                 }}
               />
-                <img
+              <img
                 src={artpainting}
                 draggable="true"
                 width="50"
@@ -460,9 +458,9 @@ function App() {
                   dragUrl.current = e.target.src;
                 }}
               />
+            </div>
           </div>
-          </div>
-          </div>        
+        </div>
 
         <div id="grid-right-side">
           <div id="text-box">
@@ -474,49 +472,50 @@ function App() {
               placeholder="type here"
             />
             <select id="dropdown-size" onChange={handleFontSize}>
-                <option value="14">Small</option>
-                <option value="22">Medium</option>
-                <option value="26">Large</option>
-                <option value="38">Extra Large</option>
-                <option value="72">Family size</option>
-              
-
+              <option value="14">Small</option>
+              <option value="22">Medium</option>
+              <option value="26">Large</option>
+              <option value="38">Extra Large</option>
+              <option value="72">Family size</option>
             </select>
-            <select id="dropdown-colorT"onChange={handleTextFontColor}>
-                <option value="black">Black</option>
-                <option value="#f5c71a">Deep Lemon</option>
-                <option value="red">Red</option>
-                <option value="white">White</option>
-                <option value="#FBCEB1">Apricot</option>
-                <option value="#30D5C8">Turqoise</option>
+            <select id="dropdown-colorT" onChange={handleTextFontColor}>
+              <option value="black">Black</option>
+              <option value="#f5c71a">Deep Lemon</option>
+              <option value="red">Red</option>
+              <option value="white">White</option>
+              <option value="#FBCEB1">Apricot</option>
+              <option value="#30D5C8">Turqoise</option>
             </select>
           </div>
-          
+
           <div id="draw-box">
             <h1> Today's Special </h1>
             <h3>Nothing is more sepcial then your own drawing</h3>
             {/* <p>{drawingEnabled ? "true" : "false"}</p> */}
-            <div id="drawButton" onClick={handleDrawButton}>{show ? 'Click to End Drawing' : 'Click to Start Drawing'}</div>
-            
-              <select id="dropdown-colorD"onChange={handleDrawColor}>
-                <option value="#ffe4e1">Misty Rose</option>
-                <option value="yellow">Yellow</option>
-                <option value="#3D9970">Olive</option>
-                <option value="red">Red</option>
-                <option value="#01FF70">Lime</option>
-                <option value="blue">Blue</option>
-                <option value="white">White</option>
-              </select>
-            
-              <select id="dropdown-pen"
-                value={tool}
-                onChange={(e) => {
-                  setTool(e.target.value);
-                }}>
-                <option value="pen">Pen</option>
-                <option value="eraser">Eraser</option>
-              </select>
-            
+            <div id="drawButton" onClick={handleDrawButton}>
+              {show ? "Click to End Drawing" : "Click to Start Drawing"}
+            </div>
+
+            <select id="dropdown-colorD" onChange={handleDrawColor}>
+              <option value="#ffe4e1">Misty Rose</option>
+              <option value="yellow">Yellow</option>
+              <option value="#3D9970">Olive</option>
+              <option value="red">Red</option>
+              <option value="#01FF70">Lime</option>
+              <option value="blue">Blue</option>
+              <option value="white">White</option>
+            </select>
+
+            <select
+              id="dropdown-pen"
+              value={tool}
+              onChange={(e) => {
+                setTool(e.target.value);
+              }}
+            >
+              <option value="pen">Pen</option>
+              <option value="eraser">Eraser</option>
+            </select>
           </div>
           <div id="image-box">
             <h1> Toppics </h1>
@@ -528,17 +527,13 @@ function App() {
             />
 
             <div>
-      
-              <input
-                type="file"
-                name="myImage"
-               />
-               
+              <input type="file" name="myImage" />
             </div>
           </div>
         </div>
       </div>
-    // </div>
+      //{" "}
+    </div>
   );
 }
 
