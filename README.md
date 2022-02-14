@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 DeSherT Design
 An attempt of this project is to design and customise your Tshirt by adding texts, Photos, Stickers, drawing on the Tshirt as well as changing and resizing the colors of the Tshirt,Text and drawing.
 
@@ -25,6 +24,3 @@ Nicki Ni - https://github.com/nickysas49
 Parisa Heyd - https://github.com/Parisaheid85
 ZZ - https://github.com/johnzhuang23
 Moey - https://github.com/Dembe7
-=======
-
->>>>>>> b929a4b01764cc71263a3436bb80f30dc6978875
