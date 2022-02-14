@@ -20,7 +20,7 @@ We have used javascript based open source application with React and Konva HTML5
 - Enable users to Sign up and make a new profile, 
 - Save button to allow users save their customised Tshirt,
 -  Adding payment section, 
--  Support rotation of texts and stickers.
+
 
 #How to use:
 - Clone the repo to your local machine,
