@@ -14,7 +14,7 @@ We have used javascript based open source application with React and Konva HTML5
 - React-color
 - React-dropzone
 - React-konva
-- 
+
 # Upcoming Upgradations:
 
 - Enable users to Sign up and make a new profile, 
