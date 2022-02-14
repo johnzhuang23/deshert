@@ -1,14 +1,13 @@
 /* fonts */
 
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Rye&family=Special+Elite&family=Stint+Ultra+Condensed&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Rye&family=Special+Elite&family=Stint+Ultra+Condensed&display=swap");
 
 html,
 body {
-
   background-color: chocolate;
   background-image: url("/src/images/menu.png");
   background-repeat: no-repeat;
-  background-size: 100% ;
+  background-size: 100%;
 }
 
 /* container grid */
@@ -18,12 +17,11 @@ body {
     minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr) minmax(0, 2fr)
     minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows:
-   minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)
+    minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)
     minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   grid-template-areas:
     "header header color color color color"
     "header header color color color color"
-
     "left left  shirt shirt right right"
     "left left  shirt shirt right right"
     "left left  shirt shirt right right"
@@ -36,22 +34,21 @@ body {
 #drawButton {
   border: 3px solid whitesmoke;
   border-style: double;
-  border-radius:5px;
-  box-shadow:  -0.2em 0 .4em black;
+  border-radius: 5px;
+  box-shadow: -0.2em 0 0.4em black;
   font-size: 15px;
   display: block;
   height: 18px;
   width: 190px;
   background-color: DarkSlateGrey;
-  color:whitesmoke;
+  color: whitesmoke;
   padding: 5px;
   margin-bottom: 20px;
-  text-align:center;
+  text-align: center;
 }
-#drawButton:hover{
+#drawButton:hover {
   box-shadow: none;
   background-color: seagreen;
-
 }
 
 #img {
@@ -64,11 +61,10 @@ body {
 #dropdown-colorD,
 #dropdown-pen {
   border: 3px solid whitesmoke;
-  border-radius:5px;
+  border-radius: 5px;
   font-size: 15px;
-  padding:2px;
+  padding: 2px;
 }
-
 
 #grid-header {
   /* background-color: chocolate; */
@@ -78,7 +74,7 @@ body {
 }
 
 #grid-color {
-  padding:15px;
+  padding: 15px;
   grid-area: color;
   width: 100%;
   height: 100%;
@@ -92,7 +88,7 @@ body {
   padding: 10px;
   position: relative;
   text-align: center;
-  z-index:5;
+  z-index: 5;
 }
 
 #shirt {
@@ -100,29 +96,28 @@ body {
   height: 100%;
   background-color: white;
   box-shadow: rgba(1, 1, 1, 1) 0px 10px 15px;
-  border-radius:10px;
+  border-radius: 10px;
   border: 10px black;
   border-style: double;
- 
 }
 
 #grid-left-side {
   grid-area: left;
   width: 100%;
   height: 100%;
-  padding-left:50px;
+  padding-left: 50px;
 }
 
 #grid-right-side {
   grid-area: right;
   width: 100%;
   height: 100%;
-  padding-right:30px;
+  padding-right: 30px;
 }
 
 #header-title {
-  padding:100px 100px;
-  font-family: 'Rye', cursive;
+  padding: 100px 100px;
+  font-family: "Rye", cursive;
   font-size: 60px;
   color: teal;
   text-decoration: underline overline;
@@ -146,70 +141,70 @@ p,
   justify-content: space-between;
   font-family: "Special Elite", cursive;
   color: lightyellow;
-}  
+}
 
 #white-btn {
-  padding:3px;
-  font-size:18px;
+  padding: 3px;
+  font-size: 18px;
   background-image: url("/src/images/whiteshirt.png");
   height: 230px;
   width: 240px;
-  background-color:chocolate;
-  border-radius:10px;
-  box-shadow:  -0.5em 0 .4em black;
+  background-color: chocolate;
+  border-radius: 10px;
+  box-shadow: -0.5em 0 0.4em black;
   position: relative;
   top: 0;
   transition: top ease 0.5s;
 }
 
 #black-btn {
-  padding:3px;
-  font-size:18px;
+  padding: 3px;
+  font-size: 18px;
   background-image: url("/src/images/blackshirt.png");
   height: 230px;
   width: 240px;
-  background-color:chocolate;
-  border-radius:10px;
-  box-shadow:  -0.5em 0 .4em black;
+  background-color: chocolate;
+  border-radius: 10px;
+  box-shadow: -0.5em 0 0.4em black;
   position: relative;
   top: 0;
   transition: top ease 0.5s;
 }
 #yellow-btn {
-  padding:3px;
-  font-size:18px;
+  padding: 3px;
+  font-size: 18px;
   background-image: url("/src/images/yellowshirt.png");
   height: 230px;
   width: 240px;
-  background-color:chocolate;
-  border-radius:10px;
-  box-shadow:  -0.5em 0 .4em black;
+  background-color: chocolate;
+  border-radius: 10px;
+  box-shadow: -0.5em 0 0.4em black;
   position: relative;
   top: 0;
   transition: top ease 0.5s;
 }
 #pink-btn {
-  padding:3px;
-  font-size:18px;
+  padding: 3px;
+  font-size: 18px;
   background-image: url("/src/images/pinkshirt.png");
   height: 230px;
   width: 240px;
-  background-color:chocolate;
-  border-radius:10px;
-  box-shadow:  -0.5em 0 .4em black;
+  background-color: chocolate;
+  border-radius: 10px;
+  box-shadow: -0.5em 0 0.4em black;
   position: relative;
   top: 0;
   transition: top ease 0.5s;
 }
 #mint-btn {
-  padding:3px;
-  font-size:18px;
+  padding: 3px;
+  font-size: 18px;
   background-image: url("/src/images/mintshirt.png");
   height: 230px;
   width: 240px;
-  background-color:chocolate;
-  border-radius:10px;
-  box-shadow:  -0.5em 0 .4em black;
+  background-color: chocolate;
+  border-radius: 10px;
+  box-shadow: -0.5em 0 0.4em black;
   position: relative;
   top: 0;
   transition: top ease 0.5s;
@@ -237,29 +232,28 @@ p,
 }
 /* menu */
 #menu-title {
-  font-family: 'Rye', cursive;
+  font-family: "Rye", cursive;
   font-size: 70px;
   margin: 0;
-  color:saddlebrown;
-  font-family: 'Stint Ultra Condensed', cursive;
- 
+  color: saddlebrown;
+  font-family: "Stint Ultra Condensed", cursive;
 }
 
-#menu-list{
-  margin-bottom:0px;
-  padding:5px;
-  width:350px;
+#menu-list {
+  margin-bottom: 0px;
+  padding: 5px;
+  width: 350px;
   border: 15px solid cadetblue;
-  border-radius:40px;
-  border-style:double;  
+  border-radius: 40px;
+  border-style: double;
 }
-h3{
-  font-size:20px;
-  font-family: 'Stint Ultra Condensed', cursive;
+h3 {
+  font-size: 20px;
+  font-family: "Stint Ultra Condensed", cursive;
 }
-h1{
-  font-size:40px;
-  font-family: 'Stint Ultra Condensed', cursive;
+h1 {
+  font-size: 40px;
+  font-family: "Stint Ultra Condensed", cursive;
 }
 
 /*sticker-box*/
@@ -267,29 +261,26 @@ h1{
   margin: 5px;
   height: 350px;
   width: 100%;
-  border-radius:10px;
+  border-radius: 10px;
   font-family: "Special Elite", cursive;
   border: 10px whitesmoke;
   border-style: double;
 
   padding: 10px;
   font-size: 18px;
-  background-color:teal;
-  box-shadow:  -0.5em 0 .4em black;
-
+  background-color: teal;
+  box-shadow: -0.5em 0 0.4em black;
 }
 #sticker-box:hover {
-  background-color:lightseagreen;
+  background-color: lightseagreen;
 }
-.stickers img{
-  margin:1px;
+.stickers img {
+  margin: 1px;
   background-color: teal;
-  border-radius:3px;
- 
+  border-radius: 3px;
 }
-.stickers img:hover{
+.stickers img:hover {
   background-color: darksalmon;
- 
 }
 
 /*text-box*/
@@ -297,16 +288,15 @@ h1{
   margin: 5px;
   height: 170px;
   width: 100%;
-  border-radius:10px;
+  border-radius: 10px;
   font-family: "Special Elite", cursive;
   border: 10px whitesmoke;
   border-style: double;
 
-
   padding: 10px;
   font-size: 18px;
-  background-color:indianred;
-  box-shadow:  -0.5em 0 .4em black;
+  background-color: indianred;
+  box-shadow: -0.5em 0 0.4em black;
   background-image: url("/src/images/tboxbackground.png");
 
   position: relative;
@@ -314,7 +304,7 @@ h1{
   transition: top ease 0.5s;
 }
 #text-box:hover {
-  background-color:lightsalmon;
+  background-color: lightsalmon;
   left: -20px;
 }
 
@@ -323,23 +313,23 @@ h1{
   margin: 5px;
   height: 240px;
   width: 100%;
-  border-radius:10px;
+  border-radius: 10px;
   font-family: "Special Elite", cursive;
   border: 10px whitesmoke;
   border-style: double;
-  
+
   padding: 10px;
   font-size: 18px;
-  background-color:goldenrod;
-  box-shadow:  -0.5em 0 .4em black;
+  background-color: goldenrod;
+  box-shadow: -0.5em 0 0.4em black;
   background-image: url("/src/images/boxbackground.png");
-  
+
   position: relative;
   left: 0;
   transition: top ease 0.5s;
 }
 #draw-box:hover {
-  background-color:gold;
+  background-color: gold;
   left: -20px;
 }
 
@@ -348,23 +338,22 @@ h1{
   margin: 5px;
   height: 200px;
   width: 100%;
-  border-radius:10px;
+  border-radius: 10px;
   font-family: "Special Elite", cursive;
   border: 10px whitesmoke;
   border-style: double;
-  
+
   padding: 10px;
   font-size: 18px;
-  background-color:cadetblue;
-  box-shadow:  -0.5em 0 .4em black;
+  background-color: cadetblue;
+  box-shadow: -0.5em 0 0.4em black;
   background-image: url("/src/images/pboxbackground.png");
-  
+
   position: relative;
   left: 0;
   transition: top ease 0.5s;
 }
 #image-box:hover {
-  background-color:lightseagreen;
+  background-color: lightseagreen;
   left: -20px;
 }
-

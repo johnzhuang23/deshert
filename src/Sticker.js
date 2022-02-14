@@ -24,6 +24,14 @@ const URLImage = ({ image }) => {
   );
 };
 
+// let [stickyLabel, setStickyLabel] = useState([]);
+//   const stickerHandleClick = (e) => {
+//     console.log(e.target.childNodes);
+//     return () => {
+//       setStickyLabel(e.target.childNodes);
+//     };
+//   };
+
 export default function Sticker(props) {
   const dragUrl = React.useRef();
   const stageRef = React.useRef();

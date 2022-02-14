@@ -51,6 +51,7 @@ function App() {
   const handleChange = (e) => {
     return setContent(e.target.value);
   };
+  // let [stickyLabel, setStickylabel]
 
   let [contentPic, setContentPic] = useState("");
   const handleChangePic = (e) => {
