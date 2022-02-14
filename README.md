@@ -22,7 +22,7 @@ We have used javascript based open source application with React and Konva HTML5
 -  Adding payment section, 
 
 
-#How to use:
+# How to use:
 - Clone the repo to your local machine,
 - Run npm install in the root directory,
 - Run npm install react-konva konva --save,
