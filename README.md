@@ -1,4 +1,4 @@
-DeSherT Design
+#DeSherT Design
 
 An attempt of this project is to design and customise your Tshirt by adding texts, Photos, Stickers, drawing on the Tshirt as well as changing and resizing the colors of the Tshirt,rotating Text and drawing.
 
@@ -16,7 +16,7 @@ React-konva
 Upcoming Upgradations:
 Enable users to Sign up and make a new profile, Save button to allow users save their customised Tshirt, Adding payment section. Support rotation of texts and stickers.
 
-How to use:
+#How to use:
 Clone the repo to your local machine.
 Run npm install in the root directory,
 Run npm install react-konva konva --save
