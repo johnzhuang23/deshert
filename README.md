@@ -17,13 +17,16 @@ We have used javascript based open source application with React and Konva HTML5
 - 
 # Upcoming Upgradations:
 
-Enable users to Sign up and make a new profile, Save button to allow users save their customised Tshirt, Adding payment section. Support rotation of texts and stickers.
+- Enable users to Sign up and make a new profile, 
+- Save button to allow users save their customised Tshirt,
+-  Adding payment section, 
+-  Support rotation of texts and stickers.
 
 #How to use:
-- Clone the repo to your local machine.
+- Clone the repo to your local machine,
 - Run npm install in the root directory,
-- Run npm install react-konva konva --save
-- Run npm start to run the webpack server.
+- Run npm install react-konva konva --save,
+- Run npm start to run the webpack server,
 - Visit localhost:3000 to check out the website!
 
 
