@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import { useState } from "react";
 //===================
-import tshirt from "./images/stickers/shirtbackground.png";
+import tshirt from "./images/shirtbackground.png";
 import cherry from "./images/stickers/cherry.png";
 import banana from "./images/stickers/banana.png";
 import pizza from "./images/stickers/pizza.png";
@@ -21,18 +21,15 @@ import advisory from "./images/stickers/advisory.png";
 import spitfire from "./images/stickers/spitfire.png";
 import nickycrying from "./images/stickers/nickycrying.png";
 import artpainting from "./images/stickers/artpainting.png";
-
 //===================
-import TransformerComponent from "./TransformerComponent";
-import TextInput from "./TextInput.js";
-import Sticker from "./Sticker.js";
-import Draw from "./Draw.js";
 import { Stage, Layer, Text, Image, Line } from "react-konva";
 import Konva from "konva";
 import useImage from "use-image";
+import TransformerComponent from "./TransformerComponent";
+import TextInput from "./TextInput.js";
+import Sticker from "./Sticker.js";
 
 function App() {
-  //Setting state for Sticker function
   const dragUrl = React.useRef();
   const stageRef = React.useRef();
   const [images, setImages] = React.useState([
@@ -69,28 +66,37 @@ function App() {
     };
   };
 
-  //draw=====================//Adding states for drawing function
+  //draw=====================//
+  const [show, toggleShow] = useState(false);
+  const [showDraw, toggleShowDraw] = useState(false);
   const [tool, setTool] = React.useState("pen");
   const [lines, setLines] = React.useState([]);
   const isDrawing = React.useRef(false);
   const [drawColor, setDrawColor] = React.useState("#ffe4e1");
+
+  const handleDrawColor = (e) => {
+    setDrawColor(e.target.value);
+  };
+
+  const handleDrawButton = (e) => {
+    e.preventDefault();
+    setDrawingEnabled(!drawingEnabled);
+    toggleShow(!show);
+  };
 
   const handleMouseUp = () => {
     isDrawing.current = false;
   };
 
   const handleMouseMove = (e) => {
-    // no drawing - skipping
     if (!isDrawing.current) {
       return;
     }
     const stage = e.target.getStage();
     const point = stage.getPointerPosition();
     let lastLine = lines[lines.length - 1];
-    // add point
     lastLine.points = lastLine.points.concat([point.x, point.y]);
 
-    // replace last
     lines.splice(lines.length - 1, 1, lastLine);
     setLines(lines.concat());
   };
@@ -105,21 +111,7 @@ function App() {
     }
   };
 
-  //draw=====================//
-  const [show, toggleShow] = useState(false);
-
-  const handleDrawButton = (e) => {
-    e.preventDefault();
-
-    // isDrawing.current = !isDrawing.current
-    setDrawingEnabled(!drawingEnabled);
-    toggleShow(!show);
-  };
-
-  const handleDrawColor = (e) => {
-    setDrawColor(e.target.value);
-  };
-
+  //text=====================//
   let [textFontSize, setTextFontSize] = useState(14);
 
   const handleFontSize = (e) => {
@@ -132,11 +124,7 @@ function App() {
     setTextFontColor(e.target.value);
   };
 
-  const [showPic, toggleShowPic] = useState(false);
-  const [showText, toggleShowText] = useState(false);
-  const [showSticker, toggleShowSticker] = useState(false);
-  const [showDraw, toggleShowDraw] = useState(false);
-
+  //image=====================//
   const UploadImage = () => {
     const [image] = useImage(contentPic);
     return <Image draggable width={200} height={200} image={image} />;
@@ -146,7 +134,7 @@ function App() {
     <div className="App">
       <div id="grid-6x7">
         <header id="grid-header">
-          <div id="header-title">DeShert</div>
+          <div id="header-title"> DesShert</div>
         </header>
 
         <header id="grid-color">
@@ -174,10 +162,7 @@ function App() {
             <div
               onDrop={(e) => {
                 e.preventDefault();
-                // console.log("hi");
-                // register event position
                 stageRef.current.setPointersPositions(e);
-                // add image
                 setImages(
                   images.concat([
                     {
@@ -204,7 +189,6 @@ function App() {
                 }}
               >
                 <Layer>
-                  {/* <Picture /> */}
                   <UploadImage />
                 </Layer>
                 <Layer>
@@ -232,10 +216,7 @@ function App() {
                   />
                   <TransformerComponent selectedShapeName="text" />
                 </Layer>
-                {/* <Layer>  */}
                 <Sticker images={images} />
-                {/* <TransformerComponent selectedShapeName="sticker"/> */}
-                {/* </Layer> */}
               </Stage>
             </div>
             <img
@@ -453,7 +434,6 @@ function App() {
           <div id="draw-box">
             <h1> Today's Special </h1>
             <h3>Nothing is more sepcial then your own drawing</h3>
-            {/* <p>{drawingEnabled ? "true" : "false"}</p> */}
             <div id="drawButton" onClick={handleDrawButton}>
               {show ? "Click to End Drawing" : "Click to Start Drawing"}
             </div>

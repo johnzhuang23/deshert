@@ -30,7 +30,6 @@ export default function Sticker(props) {
   return (
     <Layer>
       {props.images.map((image) => {
-        // console.log(image);
         return <URLImage image={image} />;
       })}
     </Layer>
