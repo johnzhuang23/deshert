@@ -5,7 +5,6 @@ import useImage from "use-image";
 import Konva from "konva";
 import { useDropzone } from "react-dropzone";
 
-
 const URLImage = ({ image }) => {
   const [img] = useImage(image.src);
   return (

@@ -30,8 +30,6 @@ import TransformerComponent from "./TransformerComponent";
 import TextInput from "./TextInput.js";
 import Sticker from "./Sticker.js";
 
-
-
 function App() {
   const dragUrl = React.useRef();
   const stageRef = React.useRef();
@@ -142,7 +140,7 @@ function App() {
             </Helmet>
       <div id="grid-6x7">
         <header id="grid-header">
-          <div id="header-title">DesShert</div>
+          <div id="header-title"> DesShert</div>
         </header>
 
         <header id="grid-color">
@@ -182,7 +180,7 @@ function App() {
               }}
               onDragOver={(e) => e.preventDefault()}
             >
-            <Stage
+              <Stage
                 ref={stageRef}
                 width={200}
                 height={400}
@@ -224,8 +222,8 @@ function App() {
                   />
                   <TransformerComponent selectedShapeName="text" />
                 </Layer>
-                  <Sticker images={images} />
-             </Stage>
+                <Sticker images={images} />
+              </Stage>
             </div>
             <img
               id="tshirtFacing"

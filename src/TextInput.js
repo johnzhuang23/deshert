@@ -12,9 +12,7 @@ export default function TextInput(props) {
     value: 80,
   });
 
-  return (  
-  
-
+  return (
     <Text
       name="text"
       text={props.content}
@@ -23,7 +21,6 @@ export default function TextInput(props) {
       fontSize={props.fontSize}
       draggable
       fill={props.fill}
-      
       onDragStart={() => {
         setTextState({
           ...textState,
@@ -38,10 +35,7 @@ export default function TextInput(props) {
           x: e.target.x(),
           y: e.target.y(),
         });
-        
-      }
-    }
-         
+      }}
     />
-  ); 
+  );
 }
