@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import { useState } from "react";
 import { render } from "react-dom";
 import { Stage, Layer, Text } from "react-konva";
-// import Inputbox from "./Inputbox.js"
-
 import Konva from "konva";
-// import { getByPlaceholderText } from '@testing-library/react';
 
 export default function TextInput(props) {
   let [textState, setTextState] = useState({

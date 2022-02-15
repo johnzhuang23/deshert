@@ -1,9 +1,8 @@
 import "./App.css";
-import "./Sticker.css";
 import React from "react";
 import { useState } from "react";
 //===================
-import tshirt from "./shirtbackground.png";
+import tshirt from "./images/stickers/shirtbackground.png";
 import cherry from "./images/stickers/cherry.png";
 import banana from "./images/stickers/banana.png";
 import pizza from "./images/stickers/pizza.png";
@@ -24,9 +23,7 @@ import nickycrying from "./images/stickers/nickycrying.png";
 import artpainting from "./images/stickers/artpainting.png";
 
 //===================
-import Picture from "./Picture.js";
 import TransformerComponent from "./TransformerComponent";
-// import TextTool from "./TextTool.js";
 import TextInput from "./TextInput.js";
 import Sticker from "./Sticker.js";
 import Draw from "./Draw.js";
@@ -35,6 +32,7 @@ import Konva from "konva";
 import useImage from "use-image";
 
 function App() {
+  //Setting state for Sticker function
   const dragUrl = React.useRef();
   const stageRef = React.useRef();
   const [images, setImages] = React.useState([
@@ -51,7 +49,6 @@ function App() {
   const handleChange = (e) => {
     return setContent(e.target.value);
   };
-  // let [stickyLabel, setStickylabel]
 
   let [contentPic, setContentPic] = useState("");
   const handleChangePic = (e) => {
@@ -72,7 +69,7 @@ function App() {
     };
   };
 
-  //draw=====================//
+  //draw=====================//Adding states for drawing function
   const [tool, setTool] = React.useState("pen");
   const [lines, setLines] = React.useState([]);
   const isDrawing = React.useRef(false);
@@ -113,31 +110,25 @@ function App() {
 
   const handleDrawButton = (e) => {
     e.preventDefault();
-    // console.log(isDrawing)
+
     // isDrawing.current = !isDrawing.current
     setDrawingEnabled(!drawingEnabled);
     toggleShow(!show);
   };
 
   const handleDrawColor = (e) => {
-    // console.log(e.target.value)
-
     setDrawColor(e.target.value);
   };
 
   let [textFontSize, setTextFontSize] = useState(14);
 
   const handleFontSize = (e) => {
-    // console.log(e.target.value)
-
     setTextFontSize(e.target.value);
   };
 
   let [textFontColor, setTextFontColor] = useState("black");
 
   const handleTextFontColor = (e) => {
-    // console.log(e.target.value)
-
     setTextFontColor(e.target.value);
   };
 
@@ -145,35 +136,6 @@ function App() {
   const [showText, toggleShowText] = useState(false);
   const [showSticker, toggleShowSticker] = useState(false);
   const [showDraw, toggleShowDraw] = useState(false);
-
-  // let [selectedShapeName, setShapeName] = useState("")
-  // const handleStageMouseDown = e => {
-  //   // isDrawing.current = true;
-  //   // const pos = e.target.getStage().getPointerPosition();
-  //   // setLines([...lines, { tool, points: [pos.x, pos.y] }]);
-  //   if (e.target === e.target.getStage()) {
-  //     setShapeName({
-  //       selectedShapeName: ""
-  //     });
-  //     return;
-  //   }
-  //   const clickedOnTransformer =
-  //     e.target.getParent().className === "Transformer";
-  //   if (clickedOnTransformer) {
-  //     return;
-  //   }
-  //   const name = e.target.name();
-  //   if (name) {
-  //     setShapeName({
-  //       selectedShapeName: name
-  //     });
-  //   } else {
-  //     setShapeName({
-  //       selectedShapeName: ""
-  //     });
-  //   }
-  //   console.log(selectedShapeName)
-  // };
 
   const UploadImage = () => {
     const [image] = useImage(contentPic);

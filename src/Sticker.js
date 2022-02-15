@@ -4,7 +4,6 @@ import { Stage, Layer, Image } from "react-konva";
 import useImage from "use-image";
 import Konva from "konva";
 import { useDropzone } from "react-dropzone";
-import "./Sticker.css";
 
 const URLImage = ({ image }) => {
   const [img] = useImage(image.src);
@@ -23,14 +22,6 @@ const URLImage = ({ image }) => {
     />
   );
 };
-
-// let [stickyLabel, setStickyLabel] = useState([]);
-//   const stickerHandleClick = (e) => {
-//     console.log(e.target.childNodes);
-//     return () => {
-//       setStickyLabel(e.target.childNodes);
-//     };
-//   };
 
 export default function Sticker(props) {
   const dragUrl = React.useRef();
