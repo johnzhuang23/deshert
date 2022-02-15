@@ -4,7 +4,7 @@ import { Stage, Layer, Image } from "react-konva";
 import useImage from "use-image";
 import Konva from "konva";
 import { useDropzone } from "react-dropzone";
-import "./Sticker.css";
+
 
 const URLImage = ({ image }) => {
   const [img] = useImage(image.src);
@@ -31,7 +31,6 @@ export default function Sticker(props) {
   return (
     <Layer>
       {props.images.map((image) => {
-        // console.log(image);
         return <URLImage image={image} />;
       })}
     </Layer>
