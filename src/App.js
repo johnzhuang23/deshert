@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import {Helmet} from "react-helmet";
 import { useState } from "react";
 //===================
 import tshirt from "./images/shirtbackground.png";
@@ -132,6 +133,11 @@ function App() {
 
   return (
     <div className="App">
+    <Helmet>
+                <meta charSet="utf-8" />
+                <title>My Title</title>
+                <link rel="canonical" href="http://mysite.com/example" />
+            </Helmet>
       <div id="grid-6x7">
         <header id="grid-header">
           <div id="header-title"> DesShert</div>
