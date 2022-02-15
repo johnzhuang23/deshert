@@ -1,6 +1,8 @@
-# DeSherT Design
+# DeSherT Designv
 
 An attempt of this project is to design and customise your Tshirt by adding texts, Photos, Stickers, drawing on the Tshirt as well as changing and resizing the colors of the Tshirt,Text and drawing.
+
+Check out our[ : Demo](https://desshert.surge.sh/)
 
 ## REACT-CANVAS
 
